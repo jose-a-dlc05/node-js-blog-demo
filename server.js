@@ -1,4 +1,5 @@
 const http = require("http");
+const fs = require("fs");
 
 const server = http.createServer((req, res) => {
 	console.log(req.url, req.method);
@@ -6,10 +7,39 @@ const server = http.createServer((req, res) => {
 	// set header content type
 	res.setHeader("Content-Type", "text/html");
 
-	res.write("<h1>Hello, Welcome</h1>");
-	res.write("<p>This is a test of the response</p>");
+	let path = "./views/";
+	switch (req.url) {
+		case "/":
+			path += "index.html";
+			res.statusCode = 200;
+			break;
+		case "/about":
+			path += "about.html";
+			res.statusCode = 200;
+			break;
+		case "/about-me":
+			res.statusCode = 301;
+			res.setHeader("Location", "/about.html");
+			res.end();
+		case "/contact":
+			path += "contact.html";
+			res.statusCode = 200;
+			break;
+		default:
+			path += "404.html";
+			res.statusCode = 404;
+			break;
+	}
 
-	res.end(); // this sends the result to the browser
+	// send an html file to the browser
+	fs.readFile(path, (err, data) => {
+		if (err) {
+			console.log(err);
+			res.end();
+		} else {
+			res.end(data); // this only works if you're only sending on thing back to the page, if send multiple things back then use res.write()
+		}
+	});
 });
 
 server.listen(3000, "localhost", () => {
