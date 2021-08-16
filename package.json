@@ -1,0 +1,24 @@
+{
+  "name": "blog-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jose-a-dlc05/node-js-blog-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jose-a-dlc05/node-js-blog-demo/issues"
+  },
+  "homepage": "https://github.com/jose-a-dlc05/node-js-blog-demo#readme",
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
+}
